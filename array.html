@@ -40,7 +40,7 @@
           $.each(data, function (i,v) {
             clone = $(".towedVehicleTemplate").clone();
             clone.attr("id", v.plate);
-            clone.removeClass("template");
+            clone.removeClass("towedVehicleTemplate");
             clone.find(".plate").text(v.plate);
             clone.find(".color").text(v.color);
             clone.find(".tow_date").text(v.tow_date);
