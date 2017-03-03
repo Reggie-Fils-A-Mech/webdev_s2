@@ -5,10 +5,14 @@
   <title>The Bus Tracker</title>
   <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
   <style>
-      h1 {border-style:dotted;
+      h1 {display:flex;
+        justify-content:center;
         color:red;
       }
       body {background-color:#1fbd7a;
+      border-style:solid;
+    
+    
       
       }
       #results {font-size:xx-small;}
@@ -35,7 +39,7 @@
                       "format":"json",
                       "stpid":12527
               }
-            }).done (function (data) {
+            }).done (function (data) { 
               console.log(data);
               $("body").append("<h1>Bus Predictions for W. Addison St</h1><p>Buses included follow the W. Addison Street, and are stopping at W. Addison and Western.</p>");
              
@@ -52,11 +56,11 @@
 </script>
 
 
-<div id="results">
+<div id="results" align="center">
     <p>
   The FitnessGram™ Pacer Test is a multistage aerobic capacity test that progressively gets more difficult as it continues. The 20 meter pacer test will begin in 30 seconds. Line up at the start. The running speed starts slowly, but gets faster each minute after you hear this signal. [beep] A single lap should be completed each time you hear this sound. [ding] Remember to run in a straight line, and run as long as possible. The second time you fail to complete a lap before the sound, your test is over. The test will begin on the word start. On your mark, get ready, start.
 </p>
- 
+ <img src="https://cbschicago.files.wordpress.com/2016/02/cta-bus-3.jpg?w=1500" height=400 width=800>
 </div>
  
 </body>
