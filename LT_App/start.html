@@ -1,0 +1,56 @@
+<html>
+  <head>
+    <!-- Material Design Lite -->
+    <script src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+    <!-- Material Design icon font -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="manifest" href="./manifest.json">
+    <style>
+      .demo-layout-transparent {
+  background: url('https://tctechcrunch2011.files.wordpress.com/2015/02/chicago.jpg') center / cover;
+}
+.demo-layout-transparent .mdl-layout__header,
+.demo-layout-transparent .mdl-layout__drawer-button {
+  /* This background is dark, so we set text to white. Use 87% black instead if
+     your background is light. */
+  color: white;
+}
+.mdl-navigation_link{opacity:0;}
+    </style>
+  </head>
+  <body>
+    <!-- Uses a transparent header that draws on top of the layout's background -->
+    <div class="demo-layout-transparent mdl-layout mdl-js-layout">
+      <header class="mdl-layout__header mdl-layout__header--transparent">
+        <div class="mdl-layout__header-row">
+          <!-- Title -->
+          <span class="mdl-layout-title">Lane Tech News</span>
+          <!-- Add spacer, to align navigation to the right -->
+          <div class="mdl-layout-spacer"></div>
+          <!-- Navigation -->
+          <nav class="mdl-navigation">
+            <a class="mdl-navigation_link" href="">Link</a>
+            <a class="mdl-navigation_link" href="">Link</a>
+            <a class="mdl-navigation_link" href="">Link</a>
+            <a class="mdl-navigation_link" href="">Link</a>
+          </nav>
+        
+        </div>
+          <p>Welcome to the Lane Tech News app! Navigate the menu to view some news.</p>
+      </header>
+      <img src="https://c2.staticflickr.com/8/7119/7707306478_4ccf75a724_b.jpg" height=710 width=1500></img>
+      <div class="mdl-layout__drawer">
+        <span class="mdl-layout-title">Menu</span>
+        <nav class="mdl-navigation">
+          <a class="mdl-navigation__link" href="">Title Page</a>
+          <a class="mdl-navigation__link" href="news.html">News</a>
+          <a class="mdl-navigation__link" href="archive.html">Archive</a>
+
+        </nav>
+      </div>
+      <main class="mdl-layout__content">
+      </main>
+    </div>
+  </body>
+</html>
