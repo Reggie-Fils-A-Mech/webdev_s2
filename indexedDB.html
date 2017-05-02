@@ -1,0 +1,107 @@
+<html>
+
+<head>
+  <!-- Material Design Lite -->
+  <script src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <!-- Dexie stuff -->
+  <script src="https://unpkg.com/dexie@latest/dist/dexie.js"></script>
+  <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+  <!-- Material Design icon font -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <title>City of Chicago Data</title>
+</head>
+
+<body>
+  <!-- Simple header with fixed tabs. -->
+  <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header
+                mdl-layout--fixed-tabs">
+    <header class="mdl-layout__header">
+      <div class="mdl-layout__header-row">
+        <!-- Title -->
+        <span class="mdl-layout-title">Title</span>
+      </div>
+      <!-- Tabs -->
+      <div class="mdl-layout__tab-bar mdl-js-ripple-effect">
+        <a href="#view" class="mdl-layout__tab is-active">View Employees</a>
+        <a href="#add" class="mdl-layout__tab">Add Employee</a>
+        <a href="#about" class="mdl-layout__tab">About</a>
+      </div>
+    </header>
+    <div class="mdl-layout__drawer">
+      <span class="mdl-layout-title">Title</span>
+    </div>
+    <main class="mdl-layout__content">
+      <section class="mdl-layout__tab-panel is-active" id="view">
+        <div class="page-content"></div>
+        <div>
+          <button id = "button">
+            Display Employees
+          </button>
+        </div>
+        <div id = "display">
+          
+        </div>
+      </section>
+      <section class="mdl-layout__tab-panel" id="add">
+        <div class="page-content">Add Employee:</div>
+      </section>
+      <section class="mdl-layout__tab-panel" id="about">
+        <div class="page-content">This was done by Alexis S.</div>
+      </section>
+    </main>
+  </div>
+  <script>
+    var url = "https://data.cityofchicago.org/resource/tt4n-kn4t.json?department=CITY%20COUNCIL";
+    $.getJSON(url)
+      .done(function(data) {
+        console.log(data);
+
+        var db = new Dexie("employeeDB");
+        db.version(1).stores({
+          employees: '++id,name,department,title,salary'
+
+        });
+
+
+
+        $.each(data, function(i, v) {
+          db.employees.count().then(function(count) {
+            console.log(count);
+            if (count = 0) {
+              $.each(data, function(i, v) {
+                db.employees.add({
+                  name: v.name,
+                  title: v.job_title,
+                  salary: v.employee_annual_salary,
+                  department: v.department
+                });
+              });
+            }
+          });
+        });
+
+      });
+  </script>
+  <script>
+  $("#button").click(displayEmployees)
+    function displayEmployees(){
+      db.employees.each(function(employee){
+        var html = "<strong>" + employee.name + "</strong>";
+        html += "<br>" + employee.department + "<br><br>";
+        $("#display").append.html;
+      });
+    }
+  </script>
+
+
+
+
+
+
+
+
+
+</body>
+
+</html>

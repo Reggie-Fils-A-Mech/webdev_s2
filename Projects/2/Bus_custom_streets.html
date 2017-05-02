@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>The Bus Tracker - Custom Streets</title>
+  <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+  <link rel="manifest" href="manifest.json">
+  <style>
+    h1 {
+      display: flex;
+      justify-content: center;
+      color: red;
+    }
+    
+    body {
+      background-color: #99ccff;
+      border-style: solid;
+      border-color: #00b33 c;
+    }
+    
+    p#Description {
+      font-size: large;
+    }
+    
+    #custom {
+      font-size:large;
+    }
+    
+    #results {
+      font-size: xx-small;
+    }
+  </style>
+</head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script>
+    $(function() {
+
+
+      var apiPassThruUrl = "https://polar-garden-75406.herokuapp.com/apiPassThru.php";
+
+     
+          var apiEndpointRT = "http://www.ctabustracker.com/bustime/api/v2/getroutes";
+
+      $.ajax({
+        url: apiPassThruUrl,
+        dataType: "json",
+        method: "GET",
+        data: {
+          "apiEndpoint": apiEndpointRT,
+          "key": "n9U8gGxjT3fGx8SyC2FxdJ5Qg",
+          "format": "json",
+          "rtnm": "",
+        }
+      });
+
+
+      }).done(function(data) {
+        console.log(data);
+        $("body").append("<h1>Bus Predictions for Chicago</h1>");
+        $("rtnm").append("#firstreet".value);
+
+        $.each(data["bustime-response"]["prd"], function(i, v) {
+          $("body").append("Distance (ft): " + v.dstp + " -- " + "Minutes left until arrival: " + v.prdctdn +
+            " -- " + "Direction: " + v.rtdir + "<br>" + v.rtnm + "<br>");
+
+        });
+
+      });
+    
+    </script>
+ 
+
+
+  <div id="results" align="center">
+    <p>
+      The FitnessGram™ Pacer Test is a multistage aerobic capacity test that progressively gets more difficult as it continues. The 20 meter pacer test will begin in 30 seconds. Line up at the start. The running speed starts slowly, but gets faster each minute
+      after you hear this signal. [beep] A single lap should be completed each time you hear this sound. [ding] Remember to run in a straight line, and run as long as possible. The second time you fail to complete a lap before the sound, your test is
+      over. The test will begin on the word start. On your mark, get ready, start.
+    </p>
+    <p id="Description">Enter your own streets in the form!</p>
+    <img src="https://cbschicago.files.wordpress.com/2016/02/cta-bus-3.jpg?w=1500" height=200 width=400>
+    <br>
+     <form id = "custom">
+    Enter streets here.<br><br> First Street:<br>
+    <input type="text" street="firststreet" value="">
+    <br>
+    <br>
+    Second Street:<br>
+    <input type="text" street="secondstreet" value="">
+    <br>
+    <br>
+    <input type="submit" value="Submit">
+  </form>
+  
+  </div>
+
+</body>
+
+</html>
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      

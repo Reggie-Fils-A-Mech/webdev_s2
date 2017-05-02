@@ -1,0 +1,15 @@
+{
+  "short_name": "Lane Tech App!",
+  "name": "Lane Tech App!",
+  "icons": [
+    {
+      "src":"homescreen/Airhorner_192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+  ],
+  "start_url": "/?utm_source=homescreen",
+  "background_color": "#000",
+  "Theme_color": "rgb (121, 181, 198)",
+  "display": "standalone"
+}
