@@ -24,7 +24,7 @@
     }
     
     #custom {
-      font-size:large;
+      font-size: large;
     }
     
     #results {
@@ -33,84 +33,100 @@
   </style>
 </head>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-  <script>
-    $(function() {
+<script>
+  $(function() {
 
 
-      var apiPassThruUrl = "https://polar-garden-75406.herokuapp.com/apiPassThru.php";
+    var apiPassThruUrl = "https://polar-garden-75406.herokuapp.com/apiPassThru.php";
 
-     
-          var apiEndpointRT = "http://www.ctabustracker.com/bustime/api/v2/getroutes";
+
+    //   ajax call to get the routes from the bus tracker
+    //      when done, append options to the routes select control.
+
+    var apiEndpoint = "http://ctabustracker.com/bustime/api/v2/getroutes";
+
+    $.ajax({
+      url: apiPassThruUrl,
+      dataType: "json",
+      method: 'GET',
+      data: {
+        "apiEndpoint": apiEndpoint,
+        "key": "gkaQ23znYPJa48MfEGiWN7Rmx",
+        "format": "json"
+      }
+    }).done(function(data) {
+
+
+      // load options into a select controle
+      $.each(data["bustime-response"]["routes"], function(i, v) {
+        var option = $("<option>"); // creates an option element
+        option.attr("value", v.rt); // set value
+        option.text(v.rt + " - " + v.rtnm); // set text
+        $("#routes").append(option); // add option to select control
+      });
+    });
+
+    $("#routes").on("change", function() {
+      var apiEndpoint = "http://ctabustracker.com/bustime/api/v2/getdirections";
 
       $.ajax({
         url: apiPassThruUrl,
         dataType: "json",
-        method: "GET",
+        method: 'GET',
         data: {
-          "apiEndpoint": apiEndpointRT,
-          "key": "n9U8gGxjT3fGx8SyC2FxdJ5Qg",
+          "apiEndpoint": apiEndpoint,
+          "key": "gkaQ23znYPJa48MfEGiWN7Rmx",
           "format": "json",
-          "rtnm": "",
+          "rt": $("#routes").val()
         }
-      });
-
-
       }).done(function(data) {
-        console.log(data);
-        $("body").append("<h1>Bus Predictions for Chicago</h1>");
-        $("rtnm").append("#firstreet".value);
+        //console.log(data);
 
-        $.each(data["bustime-response"]["prd"], function(i, v) {
-          $("body").append("Distance (ft): " + v.dstp + " -- " + "Minutes left until arrival: " + v.prdctdn +
-            " -- " + "Direction: " + v.rtdir + "<br>" + v.rtnm + "<br>");
+        // load options into a select control
 
+        $("#directions option").remove();
+
+        $.each(data["bustime-response"]["directions"], function(i, v) {
+          var option = $("<option>"); // creates an option element
+          option.attr("value", v.dir); // set value
+          option.text(v.dir); // set text
+          $("#directions").append(option); // add option to select control
         });
 
+
+
+
       });
-    
-    </script>
- 
 
 
+
+    });
+
+
+
+  });
+</script>
+
+<body>
   <div id="results" align="center">
     <p>
       The FitnessGram™ Pacer Test is a multistage aerobic capacity test that progressively gets more difficult as it continues. The 20 meter pacer test will begin in 30 seconds. Line up at the start. The running speed starts slowly, but gets faster each minute
       after you hear this signal. [beep] A single lap should be completed each time you hear this sound. [ding] Remember to run in a straight line, and run as long as possible. The second time you fail to complete a lap before the sound, your test is
       over. The test will begin on the word start. On your mark, get ready, start.
     </p>
-    <p id="Description">Enter your own streets in the form!</p>
+    <p id="Description">Pick your streets in the menu!</p>
     <img src="https://cbschicago.files.wordpress.com/2016/02/cta-bus-3.jpg?w=1500" height=200 width=400>
     <br>
-     <form id = "custom">
-    Enter streets here.<br><br> First Street:<br>
-    <input type="text" street="firststreet" value="">
-    <br>
-    <br>
-    Second Street:<br>
-    <input type="text" street="secondstreet" value="">
-    <br>
-    <br>
-    <input type="submit" value="Submit">
-  </form>
-  
+    <div>
+      <select id="routes">Chose a Street..</select>
+
+      <select id="directions">Chose Direction..</select>
+
+      <select id="stop">Chose a stop..</select>
+
+    </div>
   </div>
 
 </body>
 
 </html>
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      

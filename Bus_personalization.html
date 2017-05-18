@@ -26,6 +26,7 @@
     #Link
     {
       font-size:large;
+      background-color:#99ff99;
     }
     
     #results {
@@ -60,7 +61,7 @@
 
       }).done(function(data) {
         console.log(data);
-        $("body").append("<h1>Bus Predictions for Chicago</h1>");
+        $("body").append("<h1>Bus Predictions for Addison and Western</h1>");
         $("rtnm").append("#firstreet".value);
 
         $.each(data["bustime-response"]["prd"], function(i, v) {
@@ -93,7 +94,7 @@
     <img src="https://cbschicago.files.wordpress.com/2016/02/cta-bus-3.jpg?w=1500" height=400 width=800>
     <br>
     <br>
-    <a href="https://preview.c9users.io/afsanchez2/webdev_s2/Projects/2/Bus_custom_streets.html" id="Link">[If you want to enter your own streets, click here!]</a>
+    <a href="https://preview.c9users.io/afsanchez2/webdev_s2/Projects/2/Bus_custom_streets.html" id="Link">[ If you want to enter your own streets, click here! ]</a>
   </div>
 
 </body>
