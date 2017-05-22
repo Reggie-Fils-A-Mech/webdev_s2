@@ -98,6 +98,18 @@
 
       });
 
+      var apiEndpointST = "http://www.ctabustracker.com/bustime/api/v2/getstops";
+
+      $.ajax({
+        url: apiPassThruUrl,
+        dataType: "json",
+        method: "GET",
+        data: {
+          "apiEndpoint": apiEndpointST,
+          "key": "gkaQ23znYPJa48MfEGiWN7Rmx",
+          "format": "json",
+        }
+      });
 
 
     });
@@ -122,7 +134,7 @@
 
       <select id="directions">Chose Direction..</select>
 
-      <select id="stop">Chose a stop..</select>
+      <select id="stop">Chose a Stop..</select>
 
     </div>
   </div>
