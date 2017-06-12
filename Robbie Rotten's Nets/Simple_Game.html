@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Robbie Rotten's Quest for Nets</title>
+  <style>
+    canvas {
+      border: dotted;
+      border-color: black;
+      background-image: url("white_house.jpg");
+    }
+    
+    body {
+      background-image: url("Rob_dis.jpg");
+      background-repeat: repeat-x;
+    }
+  </style>
+</head>
+
+<body>
+  <canvas id="canvas" height="700" width="1200">
+   </canvas>
+  <img src="Robbie.png" id="Robbie" height=0 width=0>
+  <audio controls>
+    <source src = "WANO1.mp3" type = "audio/mpeg">
+  </audio>
+  <p>
+    Work in progress!
+  </p>
+
+
+  <script>
+    // For music, use <audio>
+    var c = document.querySelector("#canvas");
+    var context = c.getContext("2d");
+
+    var Playerimg = new Image(); //Player character
+    Playerimg.src = "Robbie.png";
+
+    var playerY = 50;
+
+    var harmimg = new Image(); //Harming character
+    harmimg.src = "Sportaflop.png";
+
+    var harmX = 900;
+    var harmY = 70;
+
+    var helpimg = new Image(); //Helping Character
+    helpimg.src = "net.jpg";
+
+    var helpX = 700;
+    var helpY = 90;
+
+    var livesRemaining = 3;
+    var score = 0;
+    var level = 1;
+    var paused = false;
+
+
+    Playerimg.addEventListener("load", loadImage, false);
+
+    function loadImage(e) {
+      context.drawImage(Playerimg, 10, 10); // Draws player
+    }
+    harmimg.addEventListener("load", loadImage2, false);
+
+    function loadImage2(e) {
+      context.drawImage(harmimg, harmX, 10); // Draws Harm
+    }
+    helpimg.addEventListener("load", loadImage3, false);
+
+    function loadImage3(e) {
+      context.drawImage(helpimg, 500, 100); // Draws help
+    }
+    /*
+      main animation loop
+    */
+    function animate() {
+      context.clearRect(0, 0, c.width, c.height);
+
+
+
+      // update harm and benefit y coordinates
+
+
+
+      // draw background
+
+      // draw player
+
+      context.drawImage(Playerimg, 10, playerY);
+      context.moveTo(10, playerY);
+
+
+
+      // draw harm
+
+      context.drawImage(harmimg, harmX, harmY);
+
+      // check for and handle edge condition
+
+      if (helpX <= 0) {
+        helpX = c.width;
+        helpY = Math.floor((Math.random() * 650) + 1);
+      }
+      else {
+        helpX += -1;
+      }
+
+      if (harmX <= 0) {
+        harmX = c.width;
+        harmY = Math.floor((Math.random() * 400) + 1);
+      }
+      else {
+        harmX -= 1;
+      }
+
+      // check for and handle harm collision
+
+      if (playerY-150 == harmY-115 ) {
+        playerY = 600;
+        livesRemaining -= 1;
+        score -= 200;
+      }
+      if (playerY == helpY){
+        score += 1;
+      }
+      // draw benefit
+
+      context.drawImage(helpimg, helpX, 50);
+
+      // check for and handle edge condition
+if (playerY >= c.height){
+  playerY = 0; 
+}
+      // check for benefit collision
+
+      // draw text (lives and score)
+     
+      context.font = "30px Comic Sans MS";
+      context.fillStyle = "black";
+      context.textAlign = "center";
+      context.fillText("Lives Remaining:" + livesRemaining, c.width - 200, c.height / 9);
+
+      context.font = "30px Comic Sans MS";
+      context.fillStyle = "black";
+      context.textAlign = "center";
+      context.fillText("Score:" + score, c.width - 500, c.height / 9);
+      if (score >= 50) {
+        level += 1;
+      }
+      context.font = "30px Comic Sans MS";
+      context.fillStyle = "black";
+      context.textAlign = "center";
+      context.fillText("Level:" + level, c.width - 700, c.height / 9);
+      if (livesRemaining <= 0) {
+        context.font = "50px Comic Sans MS";
+        context.fillStyle = "red";
+        context.textAlign = "center";
+        context.fillText("You lose!", c.width - 900, c.height / 9);
+        paused = true;
+
+      }
+      if (level == level+1){
+        harmX -=2;
+      }
+      //  if the game has not been paused, 
+      if (!paused) {
+        requestAnimationFrame(animate);
+      }
+
+    }
+    //Look at classroom - Kirupa
+    window.addEventListener("keydown", moveSomething, false);
+
+    function moveSomething(e) {
+      switch (e.keyCode) {
+
+        case 38:
+          // up key pressed
+          playerY -= 10;
+          break;
+
+        case 40:
+          // down key pressed
+          playerY += 10;
+          break;
+
+      }
+      
+    }
+animate();
+    //  event handler for moving player
+    //    use onKeyPress event, and change the player.y value based on the up/down keys
+  </script>
+
+
+</body>
+
+</html>

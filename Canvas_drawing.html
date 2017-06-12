@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+
+<head>
+    <title>Canvas Drawing</title>
+    <style>
+        #screen {
+            border-color: black;
+            border: 13px solid;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="screen" height="755" width="1400">
+        
+    </canvas>
+    <script>
+        var screen = document.querySelector("#screen");
+        var context = screen.getContext("2d");
+        // draw a diagonal line
+        context.moveTo(100, 500);
+        context.lineTo(550, 500);
+
+
+        // close the path
+        context.closePath();
+
+        // specify what our line looks like
+        context.lineWidth = 15;
+        context.strokeStyle = "gray";
+
+        // get the line drawn to the canvas
+        context.stroke();
+
+        context.moveTo(100, 100);
+        context.lineTo(100, 500);
+        context.closePath();
+        context.lineWidth = 15;
+        context.strokeStyle = "gray";
+        context.stroke();
+        
+        context.moveTo(100, 100);
+        context.lineTo(550, 100);
+        context.closePath();
+        context.lineWidth = 15;
+        context.strokeStyle = "gray";
+        context.stroke();
+        
+        context.moveTo(550, 100);
+        context.lineTo(550, 500);
+        context.closePath();
+        context.lineWidth = 15;
+        context.strokeStyle = "gray";
+        context.stroke();
+    </script>
+</body>
+
+</html>

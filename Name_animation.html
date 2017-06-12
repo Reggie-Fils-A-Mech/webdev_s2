@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+
+<head>
+    <title>
+        Name Animations
+    </title>
+    <style>
+        #Name {
+            color:green;
+            animation-name: Name;
+            animation-duration:7s;
+            animation-iteration-count:infinite;
+            font-size:42px
+        }
+        #Div{
+            position:relative;
+            animation-name:Div;
+            Animation-duration:7s;
+            animation-iteration-count:infinite;
+            height:500px;
+            width:500px;
+        }
+        body{
+           background-image: url("http://www.hdwallpapers.in/walls/windows_xp_bliss-wide.jpg");
+        }
+        
+        @keyframes Name {
+            0% {
+                color: green;
+               
+            }
+            25% {
+                color: blue;
+               
+            }
+            50% {
+                color:red;
+               
+            }
+            75%{
+                color:purple;
+               
+            }
+            100%{
+                color:green;
+             
+            }
+        }
+        @keyframes Div{
+            0% {
+                left:100px;
+                top:0px;
+            }
+            25% {
+                left:900px;
+                top:0px;
+            }
+            50% {
+                left:900px;
+                top:250px;
+            }
+            75% {
+                left:100px;
+                top:250px;
+            }
+            100% {
+                left:100px;
+                top:0px;
+            }
+        }
+        
+    </style>
+</head>
+
+<body>
+    <div id="Div">
+        <p id="Name">
+            Alexis Sanchez 
+        </p>
+    </div>
+</body>
+
+</html>
